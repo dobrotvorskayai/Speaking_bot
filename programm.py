@@ -28,7 +28,7 @@ def start(update, _):
 
 def gender(update, _):
     user = update.message.from_user
-    logger.info("Пол %s: %s", user.first_name, update.message.text)
+    logger.info("Пол водителя %s: %s", user.first_name, update.message.text)
     update.message.reply_text(
         'Хорошо. Пришли мне свою фотографию, чтоб я узнал тебя '
         'в толпе прохожих, или отправь /skip, если стесняешься.',
@@ -60,7 +60,7 @@ def location(update, _):
     user = update.message.from_user
     user_location = update.message.location
     logger.info(
-        "Местоположение %s: %f / %f", user.first_name, user_location.latitude, user_location.longitude)
+        "Местоположение %s: %s / %s", user.first_name, user_location.latitude, user_location.longitude)
     update.message.reply_text(
         'Отлично. Водитель уже едет к тебе!' 
         'Расскажи мне какую музыку предпочитаешь?'

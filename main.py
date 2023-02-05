@@ -5,7 +5,7 @@ from telegram.ext import (
     Updater,
     CommandHandler,
     MessageHandler,
-    filters,
+    Filters,
     ConversationHandler,
 )
 
@@ -19,14 +19,14 @@ if __name__ == '__main__':
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
         states={
-            GENDER: [MessageHandler(filters.regex('^(Boy|Girl|Other)$'), gender)],
-            PHOTO: [MessageHandler(filters.photo, photo), CommandHandler('skip', skip_photo)],
+            GENDER: [MessageHandler(Filters.regex('^(Boy|Girl|Other)$'), gender)],
+            PHOTO: [MessageHandler(Filters.photo, photo), CommandHandler('skip', skip_photo)],
             LOCATION: [
-                MessageHandler(filters.location, location),
+                MessageHandler(Filters.location, location),
                 CommandHandler('skip', skip_location),
             ],
-            BIO: [MessageHandler(filters.text & ~filters.command, bio)],
-            MUZ: [MessageHandler(filters.text & ~filters.command, muz)],
+            BIO: [MessageHandler(Filters.text & ~Filters.command, bio)],
+            MUZ: [MessageHandler(Filters.text & ~Filters.command, muz)],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
     )
